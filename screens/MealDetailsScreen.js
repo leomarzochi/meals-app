@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
+import HeaderButton from "../components/HeaderButton";
 import { MEALS } from "../data/dummy-data";
 
 const MealDetailsScreen = ({ navigation, route }) => {
@@ -12,11 +14,13 @@ const MealDetailsScreen = ({ navigation, route }) => {
     navigation.setOptions({
       headerTitle: selectedMeal.title,
       headerRight: () => (
-        <Button
-          onPress={() => alert("This is a button!")}
-          title="Info"
-          color="#fff"
-        />
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="favorite"
+            iconName="ios-star"
+            onPress={() => console.log("Favorited")}
+          />
+        </HeaderButtons>
       ),
     });
   });
