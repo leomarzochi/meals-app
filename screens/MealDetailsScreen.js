@@ -1,16 +1,33 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
 
-const MealDetailsScreen = ({route}) => {
-    const {mealId} = route.params;
+import { MEALS } from "../data/dummy-data";
 
-    return (
-        <View>
-            <Text>{mealId}</Text>
-        </View>
-    )
-}
+const MealDetailsScreen = ({ navigation, route }) => {
+  const { mealId } = route.params;
 
-export default MealDetailsScreen
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
-const styles = StyleSheet.create({})
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: selectedMeal.title,
+      headerRight: () => (
+        <Button
+          onPress={() => alert("This is a button!")}
+          title="Info"
+          color="#fff"
+        />
+      ),
+    });
+  });
+
+  return (
+    <View>
+      <Text>{selectedMeal.title}</Text>
+    </View>
+  );
+};
+
+export default MealDetailsScreen;
+
+const styles = StyleSheet.create({});
