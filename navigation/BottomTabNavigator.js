@@ -4,20 +4,30 @@ import * as React from "react";
 import TabBarIcon from "../components/TabBarIcon";
 import LinksScreen from "../screens/LinksScreen";
 import MealsNavigator from "../navigation/MealsNavigator";
+import Colors from "../constants/Colors";
+
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = "Home";
+const INITIAL_ROUTE_NAME = "Meals";
 
 export default function BottomTabNavigator() {
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator
+      initialRouteName={INITIAL_ROUTE_NAME}
+      tabBarOptions={{
+        activeTintColor: Colors.secondaryColor,
+        inactiveTintColor: Colors.primaryColor,
+        activeBackgroundColor: '#eee'
+        
+      }}
+    >
       <BottomTab.Screen
-        name="Home"
+        name="Meals"
         component={MealsNavigator}
         options={{
-          title: "Get Started",
+          title: "Meals",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-code-working" />
+            <TabBarIcon focused={focused} name="ios-home" />
           ),
         }}
       />
@@ -25,9 +35,9 @@ export default function BottomTabNavigator() {
         name="Links"
         component={LinksScreen}
         options={{
-          title: "Resources",
+          title: "Favorites",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
+            <TabBarIcon focused={focused} name="ios-star" />
           ),
         }}
       />
