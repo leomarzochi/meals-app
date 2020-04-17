@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import HeaderButton from "../components/HeaderButton";
@@ -10,19 +10,17 @@ const MealDetailsScreen = ({ navigation, route }) => {
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerTitle: selectedMeal.title,
-      headerRight: () => (
-        <HeaderButtons HeaderButtonComponent={HeaderButton}>
-          <Item
-            title="favorite"
-            iconName="ios-star"
-            onPress={() => console.log("Favorited")}
-          />
-        </HeaderButtons>
-      ),
-    });
+  navigation.setOptions({
+    headerTitle: selectedMeal.title,
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="favorite"
+          iconName="ios-star"
+          onPress={() => console.log("Favorited")}
+        />
+      </HeaderButtons>
+    ),
   });
 
   return (

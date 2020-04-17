@@ -5,8 +5,7 @@ import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 
-import MealsNavigator from "./navigation/MealsNavigator";
-
+import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import useLinking from "./navigation/useLinking";
 
 export default function App(props) {
@@ -53,7 +52,7 @@ export default function App(props) {
           ref={containerRef}
           initialState={initialNavigationState}
         >
-          <MealsNavigator />
+          <BottomTabNavigator />
         </NavigationContainer>
       </View>
     );
