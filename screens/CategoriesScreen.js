@@ -1,11 +1,7 @@
 import React from "react";
 import {
   StyleSheet,
-  Text,
-  View,
-  Button,
   FlatList,
-  TouchableOpacity,
 } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryListTile from "../components/CategoryListTile";

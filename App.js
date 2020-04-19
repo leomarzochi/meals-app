@@ -4,9 +4,18 @@ import { SplashScreen } from "expo";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
 
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import useLinking from "./navigation/useLinking";
+import mealsReducer from "./store/reducers/mealsReducer";
+
+const reducers = combineReducers({
+  meals: mealsReducer,
+});
+
+const store = createStore(reducers);
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -46,15 +55,17 @@ export default function App(props) {
     return null;
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-        <NavigationContainer
-          ref={containerRef}
-          initialState={initialNavigationState}
-        >
-          <BottomTabNavigator />
-        </NavigationContainer>
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+          <NavigationContainer
+            ref={containerRef}
+            initialState={initialNavigationState}
+          >
+            <BottomTabNavigator />
+          </NavigationContainer>
+        </View>
+      </Provider>
     );
   }
 }

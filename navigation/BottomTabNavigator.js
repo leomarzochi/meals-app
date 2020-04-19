@@ -3,6 +3,7 @@ import * as React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
 import LinksScreen from "../screens/LinksScreen";
+import FavoritesMealsScreen from '../screens/FavoritesScreen'
 import MealsNavigator from "../navigation/MealsNavigator";
 import Colors from "../constants/Colors";
 
@@ -33,7 +34,7 @@ export default function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Links"
-        component={LinksScreen}
+        component={FavoritesMealsScreen}
         options={{
           title: "Favorites",
           tabBarIcon: ({ focused }) => (

@@ -1,14 +1,16 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { useSelector } from "react-redux";
 
-import { MEALS } from "../data/dummy-data";
 import { FlatList } from "react-native-gesture-handler";
 import MealItem from "../components/MealItem";
 
 const CategoryMealsScreen = ({ route, navigation }) => {
   const { category } = route.params;
 
-  const displayedMeals = MEALS.filter(
+  const availableMeals = useSelector((state) => state.meals.favoriteMeals);
+
+  const displayedMeals = availableMeals.filter(
     (meal) => meal.categoryIds.indexOf(category.id) >= 0
   );
 
@@ -16,7 +18,9 @@ const CategoryMealsScreen = ({ route, navigation }) => {
     return (
       <MealItem
         mealData={itemData.item}
-        onSelectMeal={() => navigation.navigate("Details", {mealId: itemData.item.id})}
+        onSelectMeal={() =>
+          navigation.navigate("Details", { mealId: itemData.item.id })
+        }
       />
     );
   };
